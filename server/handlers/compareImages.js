@@ -5,7 +5,6 @@ const detectDiff = require("x-img-diff-js");
 const streamifier = require("streamifier");
 //TODO: Handle responses
 //TODO: Handle errors
-//TODO: Respond with a file...
 async function compareImages(req, res) {
 	const img1Path = req.files.imgOne[0].buffer;
 	const img2Path = req.files.imgTwo[0].buffer;

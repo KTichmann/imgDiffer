@@ -2,42 +2,38 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import compareImages from "../functions/compareImages";
+
+const useStyles = makeStyles(theme => ({
+	progress: {
+		width: "15px !important",
+		height: "15px !important",
+		margin: "8px !important",
+		color: "white"
+	}
+}));
 
 function Home(props) {
+	const classes = useStyles();
 	const [files, updateFiles] = useState([]);
 	const [imgData, updateImgData] = useState({});
+	const [loading, updateLoading] = useState(false);
 
 	const formData = new FormData();
 	formData.append("imgOne", files[0]);
 	formData.append("imgTwo", files[1]);
-
-	function handleSubmit(e) {
-		fetch("http://localhost:5000/compare", {
-			method: "POST",
-			body: formData
-		})
-			.then(response => response.json())
-			.then(response => {
-				let imgOneHeight = response.data.comparisonOne.height;
-				let imgOneWidth = response.data.comparisonOne.width;
-				let imgOneBuffer = response.data.comparisonOne.data.data;
-
-				let imgTwoHeight = response.data.comparisonTwo.height;
-				let imgTwoWidth = response.data.comparisonTwo.width;
-				let imgTwoBuffer = response.data.comparisonTwo.data.data;
-
-				updateImgData({
-					imgOneHeight,
-					imgOneWidth,
-					imgOneBuffer,
-					imgTwoHeight,
-					imgTwoBuffer,
-					imgTwoWidth
-				});
-
+	function handleSubmit() {
+		updateLoading(true);
+		compareImages(formData)
+			.then(result => {
+				updateImgData(result);
 				document.getElementById("redirect_to_comparison").click();
 			})
-			.catch(error => console.log(error));
+			.catch(error => {
+				console.log(error);
+			});
 	}
 
 	return (
@@ -47,18 +43,22 @@ function Home(props) {
 				acceptedFiles={["image/png"]}
 				filesLimit={2}
 				dropzoneText='Drag and drop two png files here to compare'
-				// showPreviewsInDropzone={false}
 				showPreviews
 				showPreviewsInDropzone={false}
 				showAlerts
 				dropZoneClass='imgDropZone'
 			/>
 			<Button
-				onClick={handleSubmit}
+				onClick={loading ? false : handleSubmit}
 				variant='contained'
 				color='primary'
-				style={{ marginTop: "4rem" }}>
-				Compare
+				style={{ marginTop: "4rem", width: "105px", height: "45px" }}
+				disabled={files.length === 2 ? false : true}>
+				{loading ? (
+					<CircularProgress disableShrink className={classes.progress} />
+				) : (
+					"Compare"
+				)}
 			</Button>
 			<Link
 				id='redirect_to_comparison'
