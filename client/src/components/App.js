@@ -24,13 +24,12 @@ const App = () => (
 					style={{
 						color: "white",
 						textDecoration: "none",
-						fontSize: "1.3rem",
-						borderRight: "1px solid white",
-						paddingRight: "60px"
+						fontSize: "1.3rem"
 					}}
 					to='/'>
 					Compare From Files
 				</Link>
+				<div style={{ marginTop: "-10px" }}>|</div>
 				<Link
 					style={{ color: "white", textDecoration: "none", fontSize: "1.3rem" }}
 					to='/url'>
