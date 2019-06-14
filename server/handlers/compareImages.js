@@ -3,7 +3,6 @@ const PImage = require("pureimage");
 const PNG = require("pngjs").PNG;
 const detectDiff = require("x-img-diff-js");
 const streamifier = require("streamifier");
-//TODO: Handle responses
 //TODO: Handle errors
 async function compareImages(req, res) {
 	const img1Path = req.files.imgOne[0].buffer;
@@ -16,12 +15,11 @@ async function compareImages(req, res) {
 	let img1 = await decodePNGfromPath(img1Path);
 	drawRectsOnImage(img1, cleanArr(diffResult.matches), "rgba(0, 0, 255, .3)");
 	drawRectsOnImage(img1, diffResult.strayingRects[0], "rgba(255,0,0,.3)");
-	//   writeOutImg(img1, "out.png");
 
 	let img2 = await decodePNGfromPath(img2Path);
 	drawRectsOnImage(img2, cleanArr(diffResult.matches), "rgba(0, 0, 255, .3)");
 	drawRectsOnImage(img2, diffResult.strayingRects[1], "rgba(255,0,0,.3)");
-	//   writeOutImg(img2, testing);
+
 	const body = {
 		img: img2
 	};

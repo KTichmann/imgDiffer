@@ -1,6 +1,6 @@
 function compareImages(formData) {
 	console.log("formData: ", formData);
-	return fetch("http://localhost:5000/compare", {
+	return fetch("http://localhost:5001/compare", {
 		method: "POST",
 		body: formData
 	})

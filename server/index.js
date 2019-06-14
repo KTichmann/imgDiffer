@@ -4,7 +4,8 @@ const app = express();
 const multer = require("multer");
 const compareImages = require("./handlers/compareImages");
 const siteToImg = require("./handlers/siteToImg");
-const PORT = process.env.PORT || 5000;
+const getUrlHTML = require("./handlers/getUrlHTML");
+const PORT = process.env.PORT || 5001;
 const storage = multer.memoryStorage();
 const upload = multer({
 	storage
@@ -24,6 +25,8 @@ app.post(
 );
 
 app.post("/siteToImg", siteToImg);
+
+app.post("/getUrlHTML", upload.single("image"), getUrlHTML);
 
 //Spin up the server
 app.listen(PORT, () => {
