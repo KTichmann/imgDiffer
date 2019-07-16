@@ -28,5 +28,10 @@
 	},
 	"devDependencies": {
 		"nodemon": "^1.19.1"
+	},
+	"engines": {
+		"node": "8.12.0",
+		"npm": "6.4.1",
+		"yarn": "1.12.3"
 	}
 }
