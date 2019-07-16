@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const cors = require("cors");
 const multer = require("multer");
 const compareImages = require("./handlers/compareImages");
 const siteToImg = require("./handlers/siteToImg");
@@ -11,6 +12,7 @@ const upload = multer({
 	storage
 });
 app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(cors());
 app.use(
 	bodyParser.urlencoded({
 		// to support URL-encoded bodies

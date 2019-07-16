@@ -1,6 +1,4 @@
 const fs = require("fs");
-const PNG = require("pngjs").PNG;
-const util = require("util");
 const PImage = require("pureimage");
 
 const detectDiff = require("x-img-diff-js");
