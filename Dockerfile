@@ -4,7 +4,7 @@ WORKDIR /imgDiff
 
 COPY ./server/package.json .
 
-RUN npm i -g yarn@1.17.3
+RUN npm i -g yarn@1.12.3
 RUN yarn install --production
 
 WORKDIR /imgDiff
