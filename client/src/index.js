@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-	<BrowserRouter basename={"/directory-name"}>
+	<BrowserRouter basename={"/imgDiffer"}>
 		<App />
 	</BrowserRouter>,
 	document.getElementById("root")
