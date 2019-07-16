@@ -1,6 +1,6 @@
 function compareImages(formData) {
 	console.log("formData: ", formData);
-	return fetch("http://localhost:5001/compare", {
+	return fetch("https://ktich-imgdiff.herokuapp.com/compare", {
 		method: "POST",
 		body: formData
 	})

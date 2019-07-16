@@ -32,7 +32,7 @@ const Url = () => {
 
 		console.log("request sent: ", num);
 		const url = num === 1 ? urlOne : urlTwo;
-		fetch("http://localhost:5001/siteToImg", {
+		fetch("https://ktich-imgdiff.herokuapp.com/siteToImg", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
